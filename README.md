@@ -88,10 +88,7 @@ fn main() {
 <br>
 
 ---
-## Basic Syntax
-<br>
-
-### Scalar Types
+## Scalar Types
 |     |Types|Literals|
 | :-- | :-- | :-- |
 | Signed integers | `i8`, `i16`, `i32`, `i64`, `i128`, `isize` | `-10`, `0`, `1_000`, `123i64` |
@@ -123,7 +120,8 @@ println!("{:?}", b"abc"); // [97, 98, 99]
 
 <br> 
 
-### Compound Types
+---
+## Compound Types
 |     |Types|Literals|
 | :-- | :-- | :-- |
 | Arrays | `[T; N]` | `[20, 30, 40]`, [`0; 3]` | 
@@ -131,7 +129,7 @@ println!("{:?}", b"abc"); // [97, 98, 99]
 
 <br>
 
-**Arrays**
+### Arrays
 - Arrays have the same type `T` and length `N` which at compile time is constant
 - The length of an array is part of its type (`[u8; 3]` and `[u8; 4]` are different types)
 - Index 5 of array `a` can be accessed by `a[5]`
@@ -142,7 +140,7 @@ println!("{:?}", b"abc"); // [97, 98, 99]
   // {:#?} gives formatted output
   ```
 
-**Tuples**
+### Tuples
 - Tuples also have a fixed length 
 - Group together elements of *different* types
 - Index 5 of a tuple `t` can be accessed by `t.5`
@@ -150,7 +148,8 @@ println!("{:?}", b"abc"); // [97, 98, 99]
 
 <br>
 
-### References
+---
+## References
 - References exist in rust
 - A reference must be deferenced before assigning to it 
 ```rs
@@ -164,7 +163,8 @@ fn main() {
 
 <br>
 
-### Slices
+---
+## Slices
 - Slices allow one to take a subset of a collection of data 
 - Slices are created by defining starting and ending indices
 - If the start index is 0, you may drop the start index. Same with the last index
@@ -189,14 +189,16 @@ fn main() {
 
 <br>
 
-### Types of string 
+---
+## Types of string 
 - In rust there are two types of string: `&str` and `string`
 - `&str` is a immutable string reference. Like `const char*` in C++
 - `string` is a mutable string buffer. Like `std::string` in C++ 
 
 <br>
 
-### Functions
+---
+## Functions
 - The main() function is always the start of the program 
 - Functions are started with `fn` then the function name 
 - The parameters are formatted as name then type 
@@ -217,14 +219,16 @@ fn is_divisible(n: u32, divisor: u32) -> bool {
 
 <br>
 
-### Rustdoc 
+---
+## Rustdoc 
 - Rust code may be documented with `///`
 - `///` allows for Markdown formatting
 - All published Rust library crates are automatically documented at docs.rs using the rustdoc tool. 
 
 <br>
 
-### Methods
+---
+## Methods
 - Like in python, methods are defined with `&self` (or `mut &self`) as the first parameter 
 ```rs
 fn area(&self) -> u32 {
@@ -234,17 +238,34 @@ fn area(&self) -> u32 {
 
 <br> 
 
-### Function Overloading
+---
+## Function Overloading
 - Function overloading is not supported in Rust
 - Default parameters are also not supported
 - Template types however are available 
 
-<br>
-
---- 
-## Exercises 
 
 <br>
 
-### Implicit Conversions
-- 
+---
+## Implicit Conversions
+- Rust will not automatically apply implicit conversions between types. So you cannot multiply a `i8` by a `i16` with no issues.
+  
+Convert `i8` to `i16`:
+```rs
+let x: i8 = 15;
+let y: i16 = 1000;
+```
+1. Convert to `i16` with `from<T>`
+   ```rs
+   println!("{x} * {y} = {}", multiply(i16::from(x), y));
+   ```
+2. Convert to `i16` with `into<T>`
+   ```rs
+   println!("{x} * {y} = {}", multiply(x.into(), y));
+   ```
+
+<br>
+
+---
+## Arrays and for Loops
