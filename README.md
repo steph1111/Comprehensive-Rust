@@ -58,8 +58,6 @@ rustup doc
    ```
 <br>
 
-<<<<<<< HEAD
-=======
 <!-- USAGE -->
 
 ---
@@ -73,7 +71,6 @@ rustup doc
   </ol>
 </details>
 <br>
->>>>>>> 7948abe9bbfcc361f0b08eed8cd8e4ba3bb9785d
 
 ---
 ## Hello World!
