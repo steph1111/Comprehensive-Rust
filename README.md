@@ -186,3 +186,65 @@ fn main() {
     println!("arr slice: {slice:?}") // Prints slice with debug format
 }
 ```
+
+<br>
+
+### Types of string 
+- In rust there are two types of string: `&str` and `string`
+- `&str` is a immutable string reference. Like `const char*` in C++
+- `string` is a mutable string buffer. Like `std::string` in C++ 
+
+<br>
+
+### Functions
+- The main() function is always the start of the program 
+- Functions are started with `fn` then the function name 
+- The parameters are formatted as name then type 
+- The last expression in a function body (or any block) becomes the return value. Simply omit the ; at the end of the expression.
+- The return type comes after `->`. For void use `-> ()`
+```rs
+// Function name: is_divisible
+// First param: u32 named n 
+// Second param: u32 named divisor
+// Return type: bool
+fn is_divisible(n: u32, divisor: u32) -> bool {
+   if divisor == 0 {
+      return false; // Explicit return 
+   }
+   n % divisor == 0 // Last line, implied return
+}
+```
+
+<br>
+
+### Rustdoc 
+- Rust code may be documented with `///`
+- `///` allows for Markdown formatting
+- All published Rust library crates are automatically documented at docs.rs using the rustdoc tool. 
+
+<br>
+
+### Methods
+- Like in python, methods are defined with `&self` (or `mut &self`) as the first parameter 
+```rs
+fn area(&self) -> u32 {
+   self.width * self.height
+}
+```
+
+<br> 
+
+### Function Overloading
+- Function overloading is not supported in Rust
+- Default parameters are also not supported
+- Template types however are available 
+
+<br>
+
+--- 
+## Exercises 
+
+<br>
+
+### Implicit Conversions
+- 
