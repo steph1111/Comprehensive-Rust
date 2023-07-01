@@ -68,12 +68,11 @@ rustup doc
 ---
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Quick Reference</summary>
+  <summary>Usage table of contents</summary>
   <ol>
-    <li><a href="#Fix">FIXME</a>
-    <li><a href="#Fix">FIXME</a>
-    <li><a href="#Fix">FIXME</a>
-    <li><a href="#Fix">FIXME</a>
+    <li><a href="#hello-world">Hello World!</a>
+    <li><a href="#basic-syntax">Basic Syntax</a></li>
+    <li><a href="#round_sig">FIXME</a></li>
   </ol>
 </details>
 <br>
