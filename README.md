@@ -58,6 +58,22 @@ rustup doc
    ```
 <br>
 
+<<<<<<< HEAD
+=======
+<!-- USAGE -->
+
+---
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Usage table of contents</summary>
+  <ol>
+    <li><a href="#hello-world">Hello World!</a>
+    <li><a href="#basic-syntax">Basic Syntax</a></li>
+    <li><a href="#round_sig">FIXME</a></li>
+  </ol>
+</details>
+<br>
+>>>>>>> 7948abe9bbfcc361f0b08eed8cd8e4ba3bb9785d
 
 ---
 ## Hello World!
