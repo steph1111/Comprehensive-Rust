@@ -70,20 +70,25 @@ rustup doc
 <details>
   <summary>Quick Reference</summary>
   <ol>
-    <li><a href="#hello_world">sig_float</a>
+    <li><a href="#Fix">FIXME</a>
+    <li><a href="#Fix">FIXME</a>
+    <li><a href="#Fix">FIXME</a>
+    <li><a href="#Fix">FIXME</a>
   </ol>
 </details>
 <br>
 
 ---
 ## Hello World!
+[hello_world.rs](https://github.com/steph1111/Comprehensive-Rust/blob/master/hello_world.rs)
 ```rs
 fn main() {
     println!("Hello 🌍!");
 }
 ```
 - Functions start with `fn`
-- Blocks have curly braces {}
+- Blocks have curly braces `{}`
+- Lines end in `;`
 - Like C++, rust programs have a `main()` function
 
 <br>
@@ -142,8 +147,6 @@ println!("{:?}", b"abc"); // [97, 98, 99]
   // {:?} gives debug output
   // {:#?} gives formatted output
   ```
-  
-
 
 **Tuples**
 - Tuples also have a fixed length 
@@ -153,4 +156,39 @@ println!("{:?}", b"abc"); // [97, 98, 99]
 
 <br>
 
-## References
+### References
+- References exist in rust
+- A reference must be deferenced before assigning to it 
+```rs
+fn main() {
+    let mut x: i32 = 10;
+    let ref_x: &mut i32 = &mut x;
+    *ref_x = 20;
+    println!("x: {x}"); // Prints 20
+}
+```
+
+<br>
+
+### Slices
+- Slices allow one to take a subset of a collection of data 
+- Slices are created by defining starting and ending indices
+- If the start index is 0, you may drop the start index. Same with the last index
+
+```rs
+fn main() {
+    let mut arr: [i32; 6] = [10, 20, 30, 40, 50, 60]; // array of type i32 with 6 elements
+    println!("arr: {arr:?}"); // Prints with debug formatting
+    let slice: &[i32] = &arr[2..4]; // Slices arr from index 2 to 4
+    println!("arr slice: {slice:?}") // Prints slice with debug format
+}
+```
+
+```rs
+fn main() {
+    let mut arr: [i32; 6] = [10, 20, 30, 40, 50, 60]; // array of type i32 with 6 elements
+    println!("arr: {arr:?}"); // Prints with debug formatting
+    let slice: &[i32] = &arr[2..]; // Slices arr from index 2 to end
+    println!("arr slice: {slice:?}") // Prints slice with debug format
+}
+```
