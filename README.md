@@ -1,4 +1,3 @@
-<!-- PROJECT INTRO -->
 <h1 align="center">Comprehensive Rust 🦀</h1>
 
 <h3 align="center"> Three Day Rust Course </h3>
@@ -15,8 +14,6 @@
 
 <br>
 
-<!-- ABOUT THE PROJECT -->
-
 ---
 ## About Rust
 Rust is modern programming language developed in 2010. It is often compared to C or C++ but does not have the dangers of memory misuse. Rust is designed for speed, efficient and safe memory management, and the ability to run multiple programs in parallel.
@@ -27,8 +24,6 @@ rustup doc
 ```
 
 <br>
-
-<!-- GETTING STARTED -->
 
 ---
 ## Getting Started
@@ -63,20 +58,6 @@ rustup doc
    ```
 <br>
 
-<!-- USAGE -->
-
----
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Quick Reference</summary>
-  <ol>
-    <li><a href="#Fix">FIXME</a>
-    <li><a href="#Fix">FIXME</a>
-    <li><a href="#Fix">FIXME</a>
-    <li><a href="#Fix">FIXME</a>
-  </ol>
-</details>
-<br>
 
 ---
 ## Hello World!
@@ -116,7 +97,7 @@ fn main() {
 
 <br>
 
-**Embedded double quotes:** # on each side or \"
+**Embedded double quotes:** # on each side or `\"`
 
 ```rs 
 println!(r#"<a href="link.html">link</a>"#);
