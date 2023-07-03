@@ -320,13 +320,12 @@ fn main() {
 <br>
 
 ### Exercise: Transpose matrix
-[transpose_matrix.rs]()
-
+[transpose_matrix.rs](https://github.com/steph1111/Comprehensive-Rust/blob/master/transpose_matrix.rs)
 Print a 3x3 matrix and transpose its rows into columns. Implement a `pretty_print()` function that outputs the matrix in $\LaTeX{}$
 
 <br>
 
-$
+$$
 \begin{bmatrix}
 1 &  2&  3\\
 4 &  5&  6\\
@@ -336,5 +335,5 @@ $
 2 &  5&  8\\
 3 &  6&  9\\
 \end{bmatrix}
-$
+$$
 
