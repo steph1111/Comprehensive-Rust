@@ -63,10 +63,24 @@ rustup doc
 ---
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Usage table of contents</summary>
+  <summary>Notes table of contents</summary>
   <ol>
-    <li><a href="#hello-world">Hello World!</a>
-    <li><a href="#basic-syntax">Basic Syntax</a></li>
+    <li><a href="#exercise-hello-world">Exercise: Hello World!</a>
+    <li><a href="#scalar-types">Scalar Types</a></li>
+    <li><a href="#compound-types">Compound Types</a></li>
+    <li><a href="#references">References</a></li>
+    <li><a href="#slices">Slices</a></li>
+    <li><a href="#types-of-string">Types of Strings</a></li>
+    <li><a href="#functions">Functions</a></li>
+    <li><a href="#rustdoc">Rustdoc</a></li>
+    <li><a href="#methods">Methods</a></li>
+    <li><a href="#function-overloading">Function Overloading</a></li>
+    <li><a href="#implicit-conversions">Implicit Conversions</a></li>
+    <li><a href="#arrays-and-for-loops">Arrays and for Loops</a></li>
+    <li><a href="#variable-type-inference">Variable Type Inference</a></li>
+    <li><a href="#static-and-constant-variables">Static and Constant Variables</a></li>
+    <li><a href="#scopes-and-shadowing">Scopes and Shadowing</a></li>
+    <li><a href="#stack-vs-heap">Stack vs Heap</a></li>
     <li><a href="#round_sig">FIXME</a></li>
   </ol>
 </details>
@@ -199,7 +213,7 @@ fn main() {
 <br>
 
 ---
-## Types of string 
+## Types of String 
 - In rust there are two types of string: `&str` and `string`
 - `&str` is a immutable string reference. Like `const char*` in C++
 - `string` is a mutable string buffer. Like `std::string` in C++ 
