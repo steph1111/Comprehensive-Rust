@@ -1,6 +1,3 @@
-// TODO: remove this when you're done with your implementation.
-#![allow(unused_variables, dead_code)]
-
 fn transpose(matrix: [[i32; 3]; 3]) -> [[i32; 3]; 3] {
   // Returns a transposed a 3x3 matrix
   let mut transposed = [[0; 3]; 3];
