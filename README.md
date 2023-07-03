@@ -457,7 +457,7 @@ Fixed data goes in the tack and dynamic data goes in the heap
 
 <!-- <a href="https://ibb.co/sRpssCy"><img src="https://i.ibb.co/ZXRccSW/Untitled-design.png" alt="Untitled-design" border="0"></a> -->
 
-![Graph of memory for strings](https://i.ibb.co/ZXRccSW/Untitled-design.png)
+![Graph of memory for strings](memory.png)
 
 <br>
 
