@@ -445,4 +445,108 @@ Rust offers full control and safety via compile time enforcement of correct memo
 - Slightly slower than the stack: some book-keeping needed
 - No guarantee of memory locality
 
+<br>
 
+### Memory example with string 
+```rs
+fn main() {
+   let s1 = String::from("Hello");
+}
+```
+Fixed data goes in the tack and dynamic data goes in the heap 
+
+<a href="https://ibb.co/sRpssCy"><img src="https://i.ibb.co/ZXRccSW/Untitled-design.png" alt="Untitled-design" border="0"></a>
+
+<br>
+
+---
+## Ownership 
+
+<br>
+
+### Assignment
+- An assignment statement transfers ownership of a variable
+- There is always exactly one variable binding which owns a value
+- Note: Some data types allow for copying of values in an assignment 
+
+```rs 
+fn main() {
+   let s1: String = String::from("Hello!");
+   let s2: String = s1; // Ownership of s1 transferred to s2
+   println!("s1: {s1}");
+   // Using s1 again results in an error^
+}
+```
+
+<br>
+
+### Function Calls 
+- When you pass a value to a function, the value is assigned to the function parameter. This transfers ownership
+- With the first call to `say_hello`, `main()` gives up ownership of `name`. Afterwards, name cannot be used anymore within `main()`.
+  ```rs
+  fn say_hello(name: String) {
+      println!("Hello {name}")
+  }
+
+  fn main() {
+      let name = String::from("Alice");
+      say_hello(name); // Transfers ownership
+      print!("{}", name); // Error, name in main() no longer has ownership
+  }
+  ```
+- **Fix 1:** Use references:
+  ```rs
+  fn say_hello(name: &String) {
+      println!("Hello {name}")
+  }
+
+  fn main() {
+      let name = String::from("Alice");
+      say_hello(&name);
+      print!("{}", name);
+  }
+  ```
+  ```
+  Hello Alice
+  Alice
+  ```
+- **Fix 2:** Use cloning
+  ```rs
+  fn say_hello(name: String) {
+     println!("Hello {name}")
+  }
+
+  fn main() {
+     let name = String::from("Alice");
+     say_hello(name.clone());
+     print!("{}", name);
+  }
+  ```
+  ```
+  Hello Alice
+  Alice
+  ```
+
+<br>
+
+### Lifetime
+- In Rust, a lifetime is a way to specify the scope for which a reference is valid
+- A lifetime is a way to ensure that a reference is not used after the data it points to has been deallocated
+
+<br>
+
+---
+## Exercise: Designing a Library
+```rs
+fn main() {
+    let mut vec = vec![10, 20];
+    vec.push(30);
+    let midpoint = vec.len() / 2;
+    println!("middle value: {}", vec[midpoint]);
+    for item in &vec {
+        println!("item: {item}");
+    }
+}
+```
+
+  
