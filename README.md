@@ -285,8 +285,10 @@ let y: i16 = 1000;
 fn main() {
    let array = [10, 20, 30];
    println!("array: {array:?}");
-   // array: [10, 20, 30]
 }
+```
+```
+array: [10, 20, 30]
 ```
 
 <br>
@@ -300,9 +302,11 @@ fn main() {
       println!(" {element} ")
    }
 }
-// 10
-// 20
-// 30
+```
+```
+10
+20
+30
 ```
 
 Or indexing with a range may be used
@@ -313,14 +317,17 @@ fn main() {
       println!("Element at index {} is {}", i, array[i]);
    }
 }
-// Element at index 0 is hello
-// Element at index 1 is there
-// Element at index 2 is !
+```
+```
+Element at index 0 is hello
+Element at index 1 is there
+Element at index 2 is !
 ```
 <br>
 
 ### Exercise: Transpose matrix
 [transpose_matrix.rs](https://github.com/steph1111/Comprehensive-Rust/blob/master/transpose_matrix.rs)
+
 Print a 3x3 matrix and transpose its rows into columns. Implement a `pretty_print()` function that outputs the matrix in $\LaTeX{}$
 
 <br>
@@ -336,4 +343,92 @@ $$
 3 &  6&  9\\
 \end{bmatrix}
 $$
+
+<br>
+
+---
+## Variable Type Inference 
+- The type of a variable may be specified, but it is not required 
+- Rust will infer the type based on initialization 
+  
+<br>
+
+---
+## Static and Constant Variables
+
+<br>
+
+### Constant variables
+```rs
+const PI:f64 = 3.14159265;
+```
+- Have no fixed address in memory
+- They’re inlined to each place which uses them, this means they are put directly into the binary on the places which use them.
+- Usually faster runtime but bigger executable file because it doesn't have to look up an address like static
+- Cannot be changed at runtime 
+
+<br>
+
+### Static variables
+```rs
+static BANNER: &str = "Welcome to RustOS 3.14";
+```
+- Have a fixed address in memory
+- Their value is loaded from this fixed address each place which uses them.
+- Usually slower runtime because we need to perform the extra instruction of loading the data from the fixed address. However this could result in a smaller executable file (only when it is used frequently) because it doesn't have to have multiple copies of the value baked into the executable.
+- Can be changed at runtime if defined as `mut` but is unsafe
+
+<br>
+
+---
+## Scopes and Shadowing
+- Shadowing is different from mutation, because after shadowing both variable’s memory locations exist at the same time. Both are available under the same name, depending where you use it in the code.
+- A shadowing variable can have a different type.
+```rs
+fn main() {
+   let a = 10;
+   println!("before: {a}");
+
+   { // Shadowed area
+      let a = "hello";
+      println!("inner scope: {a}");
+
+      let a = true;
+      println!("shadowed in inner scope: {a}");
+   }
+
+   println!("after: {a}");
+}
+```
+
+```
+before: 10
+inner scope: hello
+shadowed in inner scope: true
+after: 10
+```
+
+<br>
+
+---
+## Stack vs Heap 
+Rust offers full control and safety via compile time enforcement of correct memory management.
+
+<br>
+
+### Stack 
+- Continuous area of memory for local variables
+- Values have fixed sizes known at compile time
+- Extremely fast: just move a stack pointer
+- Easy to manage: follows function calls
+- Great memory locality
+
+<br>
+
+### Heap 
+- Storage of values outside of function calls
+- Values have dynamic sizes determined at runtime
+- Slightly slower than the stack: some book-keeping needed
+- No guarantee of memory locality
+
 
