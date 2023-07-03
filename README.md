@@ -73,7 +73,7 @@ rustup doc
 <br>
 
 ---
-## Hello World!
+## Exercise: Hello World!
 [hello_world.rs](https://github.com/steph1111/Comprehensive-Rust/blob/master/hello_world.rs)
 ```rs
 fn main() {
@@ -130,6 +130,11 @@ println!("{:?}", b"abc"); // [97, 98, 99]
 <br>
 
 ### Arrays
+```rs
+// Mutable array named 'a' of type i8 
+// with 10 elements with the value 42 
+let mut a: [i8; 10] = [42; 10];
+```
 - Arrays have the same type `T` and length `N` which at compile time is constant
 - The length of an array is part of its type (`[u8; 3]` and `[u8; 4]` are different types)
 - Index 5 of array `a` can be accessed by `a[5]`
@@ -141,6 +146,10 @@ println!("{:?}", b"abc"); // [97, 98, 99]
   ```
 
 ### Tuples
+```rs
+// Tuple with t.0 being '7' and t.1 'true'
+let t: (i8, bool) = (7, true);
+```
 - Tuples also have a fixed length 
 - Group together elements of *different* types
 - Index 5 of a tuple `t` can be accessed by `t.5`
@@ -269,3 +278,63 @@ let y: i16 = 1000;
 
 ---
 ## Arrays and for Loops
+<br>
+
+### Printing an array with debug format
+```rs
+fn main() {
+   let array = [10, 20, 30];
+   println!("array: {array:?}");
+   // array: [10, 20, 30]
+}
+```
+
+<br>
+
+### Iterating with for
+You can iterate over an array similar to the syntax to python
+```rs 
+fn main() {
+   let array = [10, 20, 30];
+   for element in array {
+      println!(" {element} ")
+   }
+}
+// 10
+// 20
+// 30
+```
+
+Or indexing with a range may be used
+```rs
+fn main() {
+   let array = ["hello", "there", "!"];
+   for i in 0..3 {
+      println!("Element at index {} is {}", i, array[i]);
+   }
+}
+// Element at index 0 is hello
+// Element at index 1 is there
+// Element at index 2 is !
+```
+<br>
+
+### Exercise: Transpose matrix
+[transpose_matrix.rs]()
+
+Print a 3x3 matrix and transpose its rows into columns. Implement a `pretty_print()` function that outputs the matrix in $\LaTeX{}$
+
+<br>
+
+$
+\begin{bmatrix}
+1 &  2&  3\\
+4 &  5&  6\\
+7 &  8&  9\\
+\end{bmatrix} \rightarrow  \begin{bmatrix}
+1 &  4&  7\\
+2 &  5&  8\\
+3 &  6&  9\\
+\end{bmatrix}
+$
+
