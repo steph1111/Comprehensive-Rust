@@ -236,7 +236,7 @@ fn is_divisible(n: u32, divisor: u32) -> bool {
    if divisor == 0 {
       return false; // Explicit return 
    }
-   n % divisor == 0 // Last line, implied return
+   n % divisor == 0 // Last line, implied return because no ;
 }
 ```
 
@@ -506,10 +506,12 @@ fn main() {
       print!("{}", name);
   }
   ```
+
   ```
   Hello Alice
   Alice
   ```
+
 - **Fix 2:** Use cloning
   ```rs
   fn say_hello(name: String) {
@@ -522,6 +524,7 @@ fn main() {
      print!("{}", name);
   }
   ```
+
   ```
   Hello Alice
   Alice
@@ -537,16 +540,166 @@ fn main() {
 
 ---
 ## Exercise: Designing a Library
+
+[library.rs](https://github.com/steph1111/Comprehensive-Rust/blob/master/library.rs)
+
+References used:
+- Vec: [Struct std::vec::Vec](https://doc.rust-lang.org/std/vec/struct.Vec.html) 
+- Option: [Module std::option](https://doc.rust-lang.org/std/option/)
+- Iterators: [Trait std::iter::Iterator](https://doc.rust-lang.org/std/iter/trait.Iterator.html)
+
+<br>
+
+---
+## Iterators
+- The Iterator trait simply says that you can call next until you get `None` back
+
+  ```rs
+  fn main() {
+      let v: Vec<i8> = vec![10, 20, 30];
+      let mut iter = v.iter();
+
+      println!("v[0]: {:?}", iter.next());
+      println!("v[1]: {:?}", iter.next());
+      println!("v[2]: {:?}", iter.next());
+      println!("No more items: {:?}", iter.next());
+  }
+  ```
+
+  <br>
+
+---
+## Structs
+
+<br>
+
+### Struct basics
 ```rs
+struct Person {
+   name: String,
+   age: u8,
+}
+
 fn main() {
-    let mut vec = vec![10, 20];
-    vec.push(30);
-    let midpoint = vec.len() / 2;
-    println!("middle value: {}", vec[midpoint]);
-    for item in &vec {
-        println!("item: {item}");
-    }
+   let mut peter = Person {
+      name: String::from("Peter"),
+      age: 27,
+   };
+   println!("{} is {} years old", peter.name, peter.age);
+    
+   peter.age = 28;
+   println!("{} is {} years old", peter.name, peter.age);
+ }
+```
+```
+Peter is 27 years old
+Peter is 28 years old
+```
+- The syntax `..peter` allows us to copy the majority of the fields from the old struct without having to explicitly type it all out. It must always be the last element.
+  ```rs
+  let jackie = Person {
+        name: String::from("Jackie"),
+        ..peter
+     };
+     println!("{} is {} years old", jackie.name, jackie.age);
+  }
+  ```
+  ```
+  Jackie is 28 years old
+  ```
+
+- Methods are defined in an `impl` block
+- Constructors are called `new` by convention
+  ```rs
+  #[derive(Debug)]
+   struct Person {
+     name: String,
+     age: u8,
+   }
+
+   impl Person { // Constructor 
+      fn new(name: String, age: u8) -> Person { // Could also use -> Self
+         Person { name, age }
+      }
+   }
+
+   fn main() {
+     let peter = Person::new(String::from("Peter"), 27);
+     println!("{peter:#?}");
+   }
+  ```
+- Use `{:#?}` when printing structs to request the debug representation
+  ```
+  Person {
+     name: "Peter",
+     age: 27,
+  }
+  ```
+
+<br>
+
+### Tuple Structs
+- If the field names are unimportant, you can use a tuple struct
+- These are useful when units are attached to the value or data verification is necessary (only odd numbers, phone numbers, etc) 
+```rs
+struct Newtons(f64);
+
+fn set_thruster_force(force: Newtons) {
+    // ...
 }
 ```
+
+<br>
+
+---
+## Enums
+-  The enum keyword allows the creation of a type which has a few different variants
+-  Where structs give you a way of grouping together related fields and data, like a `Rectangle` with its `width` and `height`, enums give you a way of saying a value is one of a possible set of values 
+-  For example, we may want to say that `Rectangle` is one of a set of possible shapes that also includes `Circle` and `Triangle`
+-  [Useful information on enums](https://www.programiz.com/rust/enum#google_vignette)
+```rs
+fn main() {
+
+   // define enum color
+   #[derive(Debug)]
+   enum Color {
+      Green,
+      Yellow,
+      Red,
+   }
+
+    // initialize and access enum variants
+   let green = Color::Green;
+   let yellow = Color::Yellow;
+   let red = Color::Red;
+
+   // print enum values
+   println!("{:?}", green);
+   println!("{:?}", yellow);
+   println!("{:?}", red);
+}
+```
+```
+Green
+Yellow
+Red
+```
+
+<br>
+
+---
+## Method Receiver
+- `&self`: borrows the object from the caller using a shared and immutable reference. The object can be used again afterwards.
+- `&mut self`: borrows the object from the caller using a unique and mutable reference. The object can be used again afterwards.
+- `self`: takes ownership of the object and moves it away from the caller. The method becomes the owner of the object. The object will be dropped (deallocated) when the method returns, unless its ownership is explicitly transmitted. Complete ownership does not automatically mean mutability.
+- `mut self`: same as above, but the method can mutate the object.
+- No receiver: this becomes a static method on the struct. Typically used to create constructors which are called new by convention.
+
+<br>
+
+---
+## Pattern Matching
+- The match keyword let you match a value against one or more patterns. The comparisons are done from top to bottom and the first match wins.
+- The patterns can be simple values, similarly to `switch` in C and C++:
 
   
