@@ -280,13 +280,13 @@ let x: i8 = 15;
 let y: i16 = 1000;
 ```
 1. Convert to `i16` with `from<T>`
-   ```rs
-   println!("{x} * {y} = {}", multiply(i16::from(x), y));
-   ```
+```rs
+println!("{x} * {y} = {}", multiply(i16::from(x), y));
+```
 2. Convert to `i16` with `into<T>`
-   ```rs
-   println!("{x} * {y} = {}", multiply(x.into(), y));
-   ```
+```rs
+println!("{x} * {y} = {}", multiply(x.into(), y));
+```
 
 <br>
 
@@ -483,52 +483,50 @@ fn main() {
 ### Function Calls 
 - When you pass a value to a function, the value is assigned to the function parameter. This transfers ownership
 - With the first call to `say_hello`, `main()` gives up ownership of `name`. Afterwards, name cannot be used anymore within `main()`.
-  ```rs
-  fn say_hello(name: String) {
-      println!("Hello {name}")
-  }
+```rs
+fn say_hello(name: String) {
+    println!("Hello {name}")
+}
 
-  fn main() {
-      let name = String::from("Alice");
-      say_hello(name); // Transfers ownership
-      print!("{}", name); // Error, name in main() no longer has ownership
-  }
-  ```
+fn main() {
+    let name = String::from("Alice");
+    say_hello(name); // Transfers ownership
+    print!("{}", name); // Error, name in main() no longer has ownership
+}
+```
 - **Fix 1:** Use references:
-  ```rs
-  fn say_hello(name: &String) {
-      println!("Hello {name}")
-  }
+```rs
+fn say_hello(name: &String) {
+    println!("Hello {name}")
+}
 
-  fn main() {
-      let name = String::from("Alice");
-      say_hello(&name);
-      print!("{}", name);
-  }
-  ```
-
-  ```
-  Hello Alice
-  Alice
-  ```
+fn main() {
+    let name = String::from("Alice");
+    say_hello(&name);
+    print!("{}", name);
+}
+```
+```
+Hello Alice
+Alice
+```
 
 - **Fix 2:** Use cloning
-  ```rs
-  fn say_hello(name: String) {
-     println!("Hello {name}")
-  }
+```rs
+fn say_hello(name: String) {
+   println!("Hello {name}")
+}
 
-  fn main() {
-     let name = String::from("Alice");
-     say_hello(name.clone());
-     print!("{}", name);
-  }
-  ```
-
-  ```
-  Hello Alice
-  Alice
-  ```
+fn main() {
+   let name = String::from("Alice");
+   say_hello(name.clone());
+   print!("{}", name);
+}
+```
+```
+Hello Alice
+Alice
+```
 
 <br>
 
@@ -554,17 +552,17 @@ References used:
 ## Iterators
 - The Iterator trait simply says that you can call next until you get `None` back
 
-  ```rs
-  fn main() {
-      let v: Vec<i8> = vec![10, 20, 30];
-      let mut iter = v.iter();
+```rs
+fn main() {
+    let v: Vec<i8> = vec![10, 20, 30];
+    let mut iter = v.iter();
 
-      println!("v[0]: {:?}", iter.next());
-      println!("v[1]: {:?}", iter.next());
-      println!("v[2]: {:?}", iter.next());
-      println!("No more items: {:?}", iter.next());
-  }
-  ```
+    println!("v[0]: {:?}", iter.next());
+    println!("v[1]: {:?}", iter.next());
+    println!("v[2]: {:?}", iter.next());
+    println!("No more items: {:?}", iter.next());
+}
+```
 
   <br>
 
@@ -596,45 +594,45 @@ Peter is 27 years old
 Peter is 28 years old
 ```
 - The syntax `..peter` allows us to copy the majority of the fields from the old struct without having to explicitly type it all out. It must always be the last element.
-  ```rs
-  let jackie = Person {
-        name: String::from("Jackie"),
-        ..peter
-     };
-     println!("{} is {} years old", jackie.name, jackie.age);
-  }
-  ```
-  ```
-  Jackie is 28 years old
-  ```
+```rs
+let jackie = Person {
+      name: String::from("Jackie"),
+      ..peter
+   };
+   println!("{} is {} years old", jackie.name, jackie.age);
+}
+```
+```
+Jackie is 28 years old
+```
 
 - Methods are defined in an `impl` block
 - Constructors are called `new` by convention
-  ```rs
-  #[derive(Debug)]
-   struct Person {
-     name: String,
-     age: u8,
-   }
+```rs
+#[derive(Debug)]
+ struct Person {
+   name: String,
+   age: u8,
+ }
 
-   impl Person { // Constructor 
-      fn new(name: String, age: u8) -> Person { // Could also use -> Self
-         Person { name, age }
-      }
-   }
+ impl Person { // Constructor 
+    fn new(name: String, age: u8) -> Person { // Could also use -> Self
+       Person { name, age }
+    }
+ }
 
-   fn main() {
-     let peter = Person::new(String::from("Peter"), 27);
-     println!("{peter:#?}");
-   }
-  ```
+ fn main() {
+   let peter = Person::new(String::from("Peter"), 27);
+   println!("{peter:#?}");
+ }
+```
 - Use `{:#?}` when printing structs to request the debug representation
-  ```
-  Person {
-     name: "Peter",
-     age: 27,
-  }
-  ```
+```rs
+Person {
+   name: "Peter",
+   age: 27,
+}
+```
 
 <br>
 
@@ -701,5 +699,3 @@ Red
 ## Pattern Matching
 - The match keyword let you match a value against one or more patterns. The comparisons are done from top to bottom and the first match wins.
 - The patterns can be simple values, similarly to `switch` in C and C++:
-
-  
